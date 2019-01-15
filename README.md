@@ -71,9 +71,9 @@ If Suricata instance is operating correctly, you should  see the following line 
 
 ### Docker
 
-This Docker is build from centos 7 official docker. 
+This Docker is build from Ubuntu 18.04 official docker. 
 
-The container shares the network of the host. 
+The container shares the network of the host. The goal is to put Suricata into its own netns.
 
 ### Suricata
 
