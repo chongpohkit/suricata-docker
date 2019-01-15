@@ -2,9 +2,11 @@ FROM ubuntu:18.04
 #ENV container docker
 ## Install Suricata as describe here https://redmine.openinfosecfoundation.org/projects/suricata/wiki/CentOS_Installation
 RUN apt-get update
-RUN apt install -y gcc libpcap-devel pcre-devel libyaml-devel file-devel \
-    zlib-devel jansson-devel nss-devel libcap-ng-devel libnet-devel \
-    libnetfilter_queue-devel lua-devel wget tar make
+RUN apt -y install libpcre3 libpcre3-dev build-essential autoconf \
+    automake libtool libpcap-dev libnet1-dev libyaml-0-2 libyaml-dev \
+    zlib1g zlib1g-dev libmagic-dev libcap-ng-dev libjansson-dev pkg-config \
+    libnetfilter-queue-dev geoip-bin geoip-database geoipupdate apt-transport-https
+
 RUN cd /tmp/ \
     && wget https://www.openinfosecfoundation.org/download/suricata-4.1.2.tar.gz \
     && tar -xvzf /tmp/suricata-4.1.2.tar.gz 
@@ -15,7 +17,7 @@ RUN cd /tmp/suricata-4.1.2/ \
     && make install-full\
     && ldconfig
 # Install Suricata-update utility https://github.com/OISF/suricata-update
-RUN apt install -y python-pip python-yaml
+RUN apt -y install python-pip python-yaml
 RUN pip install --pre --upgrade suricata-update
 #RUN apt install -y cronie
 #COPY suricata-update.sh /etc/suricata/suricata-update.sh
