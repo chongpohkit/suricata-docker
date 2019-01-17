@@ -5,21 +5,29 @@ RUN apt-get update
 RUN apt -y install libpcre3 libpcre3-dev build-essential autoconf wget apt-utils \
     automake libtool libpcap-dev libnet1-dev libyaml-0-2 libyaml-dev liblua5.1-dev \
     zlib1g zlib1g-dev libmagic-dev libcap-ng-dev libjansson-dev pkg-config \
-    libnetfilter-queue-dev geoip-bin geoip-database geoipupdate apt-transport-https
+    libnetfilter-queue-dev geoip-bin geoip-database geoipupdate apt-transport-https \
+    clang libelf-dev
 
-RUN cd /tmp/ \
-    && wget https://www.openinfosecfoundation.org/download/suricata-4.1.2.tar.gz \
-    && tar -xvzf /tmp/suricata-4.1.2.tar.gz 
-RUN cd /tmp/suricata-4.1.2/ \
-    && ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-nfqueue --enable-lua \
-    --disable-suricata-update --enable-ebpf --enable-ebpf-build
-RUN cd /tmp/suricata-4.1.2/ \
-    && make \
-    && make install-full\
-    && ldconfig
+#RUN cd /tmp/ \
+#    && wget https://www.openinfosecfoundation.org/download/suricata-4.1.2.tar.gz \
+#    && tar -xvzf /tmp/suricata-4.1.2.tar.gz 
+#RUN cd /tmp/suricata-4.1.2/ \
+#    && ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-nfqueue --enable-lua \
+#    --disable-suricata-update --enable-ebpf --enable-ebpf-build
+#RUN cd /tmp/suricata-4.1.2/ \
+#    && make \
+#    && make install-full\
+#    && ldconfig
+RUN add-apt-repository ppa:oisf/suricata-stable
+RUN apt-get update
+RUN apt-get install suricata
+
 # Install Suricata-update utility https://github.com/OISF/suricata-update
-RUN apt -y install python-pip python-yaml
-RUN pip install --pre --upgrade suricata-update
+#RUN apt -y install python-pip python-yaml
+#RUN pip install --pre --upgrade suricata-update
+
+RUN suricata --build-info 
+
 #RUN apt install -y cronie
 #COPY suricata-update.sh /etc/suricata/suricata-update.sh
 # COPY file needed for the Suricata efficiency
