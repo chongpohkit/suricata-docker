@@ -9,8 +9,8 @@ RUN apt -y install libpcre3 libpcre3-dev build-essential autoconf wget apt-utils
     clang libelf-dev software-properties-common apt-utils
 
 COPY libbpf.tgz /tmp/
-RUN cd /tmp/ && tar -zxvf libbpf && cp libbpf.a /usr/local/lib64/libbpf.a && cp libbpf.so /usr/local/lib64/libbpf.so \
-    && cp libbpf.h /usr/local/include/bpf/libbpf.h
+RUN cd /tmp/ && tar -zxvf libbpf.tgz && cp /tmp/libbpf.a /usr/local/lib64/libbpf.a && cp /tmp/libbpf.so /usr/local/lib64/libbpf.so \
+    && cp /tmp/libbpf.h /usr/local/include/bpf/libbpf.h
 RUN ldconfig
 RUN cd /tmp/ \
     && wget https://www.openinfosecfoundation.org/download/suricata-4.1.2.tar.gz \
