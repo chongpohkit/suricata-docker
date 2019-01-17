@@ -11,7 +11,8 @@ RUN cd /tmp/ \
     && wget https://www.openinfosecfoundation.org/download/suricata-4.1.2.tar.gz \
     && tar -xvzf /tmp/suricata-4.1.2.tar.gz 
 RUN cd /tmp/suricata-4.1.2/ \
-    && ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-nfqueue --enable-lua --disable-suricata-update
+    && ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-nfqueue --enable-lua \
+    --disable-suricata-update --enable-ebpf --enable-ebpf-build
 RUN cd /tmp/suricata-4.1.2/ \
     && make \
     && make install-full\
