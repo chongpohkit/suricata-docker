@@ -20,7 +20,7 @@ RUN apt -y install libpcre3 libpcre3-dev build-essential autoconf wget apt-utils
 #    && ldconfig
 RUN add-apt-repository ppa:oisf/suricata-stable
 RUN apt-get update
-RUN apt-get install suricata
+RUN apt-get --yes --force-yes install suricata
 
 # Install Suricata-update utility https://github.com/OISF/suricata-update
 #RUN apt -y install python-pip python-yaml
