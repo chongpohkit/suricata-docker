@@ -6,7 +6,7 @@ RUN apt -y install libpcre3 libpcre3-dev build-essential autoconf wget apt-utils
     automake libtool libpcap-dev libnet1-dev libyaml-0-2 libyaml-dev liblua5.1-dev \
     zlib1g zlib1g-dev libmagic-dev libcap-ng-dev libjansson-dev pkg-config \
     libnetfilter-queue-dev geoip-bin geoip-database geoipupdate apt-transport-https \
-    clang libelf-dev
+    clang libelf-dev software-properties-common apt-utils
 
 #RUN cd /tmp/ \
 #    && wget https://www.openinfosecfoundation.org/download/suricata-4.1.2.tar.gz \
