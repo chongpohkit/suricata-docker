@@ -8,12 +8,16 @@ RUN apt -y install libpcre3 libpcre3-dev build-essential autoconf wget apt-utils
     libnetfilter-queue-dev geoip-bin geoip-database geoipupdate apt-transport-https \
     clang libelf-dev software-properties-common apt-utils llvm-6.0-dev llvm-6.0
 
+RUN ln -s /usr/lib/llvm-6.0/bin/llc /usr/bin/llc
+
 COPY libbpf.tgz /tmp/
 RUN cd /tmp/ && mkdir -p /usr/local/lib64/ && mkdir -p /usr/local/include/bpf && \
     tar -zxvf libbpf.tgz && cp /tmp/libbpf.a /usr/local/lib64/libbpf.a && cp /tmp/libbpf.so /usr/local/lib64/libbpf.so \
     && cp /tmp/libbpf.h /usr/local/include/bpf/libbpf.h
 RUN ldconfig
-RUN ls /usr/bin/
+
+RUN ls -lrt /usr/bin/
+
 RUN cd /tmp/ \
     && wget https://www.openinfosecfoundation.org/download/suricata-4.1.2.tar.gz \
     && tar -xvzf /tmp/suricata-4.1.2.tar.gz 
