@@ -6,7 +6,7 @@ RUN apt -y install libpcre3 libpcre3-dev build-essential autoconf wget apt-utils
     automake libtool libpcap-dev libnet1-dev libyaml-0-2 libyaml-dev liblua5.1-dev \
     zlib1g zlib1g-dev libmagic-dev libcap-ng-dev libjansson-dev pkg-config \
     libnetfilter-queue-dev geoip-bin geoip-database geoipupdate apt-transport-https \
-    clang libelf-dev software-properties-common apt-utils
+    clang libelf-dev software-properties-common apt-utils llvm-6.0-dev llvm-6.0
 
 COPY libbpf.tgz /tmp/
 RUN cd /tmp/ && mkdir -p /usr/local/lib64/ && mkdir -p /usr/local/include/bpf && \
