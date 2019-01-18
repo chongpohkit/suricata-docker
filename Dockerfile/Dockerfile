@@ -34,10 +34,10 @@ RUN cd /tmp/suricata/ && ./autogen.sh && \
 #RUN cd /tmp/suricata-4.1.2/ebpf && cat Makefile
 RUN cd /tmp/suricata/ \
     && make \
-    && make install-full\
+    && make install-full \
     && ldconfig
-RUN cd /tmp/suricata/libhtp \
-    && make install
+RUN cd /tmp/suricata/libhtp/ \
+    && make install \
     && ldconfig
 #RUN add-apt-repository ppa:oisf/suricata-stable
 #RUN apt-get update
