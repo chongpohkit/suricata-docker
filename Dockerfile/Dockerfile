@@ -13,6 +13,7 @@ RUN cd /tmp/ && mkdir -p /usr/local/lib64/ && mkdir -p /usr/local/include/bpf &&
     tar -zxvf libbpf.tgz && cp /tmp/libbpf.a /usr/local/lib64/libbpf.a && cp /tmp/libbpf.so /usr/local/lib64/libbpf.so \
     && cp /tmp/libbpf.h /usr/local/include/bpf/libbpf.h
 RUN ldconfig
+RUN ls /usr/bin/
 RUN cd /tmp/ \
     && wget https://www.openinfosecfoundation.org/download/suricata-4.1.2.tar.gz \
     && tar -xvzf /tmp/suricata-4.1.2.tar.gz 
