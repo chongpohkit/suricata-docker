@@ -21,10 +21,10 @@ RUN ls -lrt /usr/bin/
 RUN cd /tmp/ \
     && wget https://www.openinfosecfoundation.org/download/suricata-4.1.2.tar.gz \
     && tar -xvzf /tmp/suricata-4.1.2.tar.gz 
-RUN cd /tmp/suricata-4.1.2/ && cat Makefile
+RUN cd /tmp/suricata-4.1.2/ \
     && CC=clang ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --enable-nfqueue --enable-lua \
     --disable-suricata-update --enable-ebpf --enable-ebpf-build
-RUN cd /tmp/suricata-4.1.2/ebpf && 
+RUN cd /tmp/suricata-4.1.2/ebpf && cat Makefile
 RUN cd /tmp/suricata-4.1.2/ \
     && make \
     && make install-full\
