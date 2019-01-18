@@ -13,7 +13,7 @@ RUN ln -s /usr/lib/llvm-6.0/bin/llc /usr/bin/llc
 COPY libbpf.tgz /tmp/
 RUN cd /tmp/ && mkdir -p /usr/local/lib64/ && mkdir -p /usr/local/include/bpf && \
     tar -zxvf libbpf.tgz && cp /tmp/libbpf.a /usr/local/lib64/libbpf.a && cp /tmp/libbpf.so /usr/local/lib64/libbpf.so \
-    && cp /tmp/libbpf.h /usr/local/include/bpf/libbpf.h
+    && cp /tmp/libbpf.h /usr/local/include/bpf/libbpf.h && cp /tmp/bpf.h /usr/local/include/bpf/bpf.h
 RUN ldconfig
 
 RUN ls -lrt /usr/bin/
