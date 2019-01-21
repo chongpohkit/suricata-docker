@@ -55,7 +55,7 @@ COPY /Dockerfile/docker-entrypoint.sh /
 
 VOLUME /var/log/suricata
 
-RUN /usr/sbin/suricata -V
+RUN suricata -V
 
 RUN suricata --build-info
 
