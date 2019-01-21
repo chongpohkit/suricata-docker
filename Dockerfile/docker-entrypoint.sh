@@ -1,14 +1,9 @@
-#!/bin/bash
+#! /bin/bash
 
-# Update suricata rules
-suricata-update
+# If the first command does not look like argument, assume its a
+# command the user wants to run. Normally I wouldn't do this.
+if [ "${1:0:1}" != "-" ]; then
+    PS1=${PS1} exec "$@"
+fi
 
-# Start cron
-crond
-
-# Add cronjob
-crontab /etc/cron.d/suricata-update-cron
-
-# Started suricata
-/usr/bin/suricata -c /etc/suricata/suricata.yaml -q 0
-
+exec /usr/sbin/suricata $@
