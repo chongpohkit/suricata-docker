@@ -47,7 +47,20 @@ RUN cd /tmp/suricata/libhtp/ \
 #RUN apt -y install python-pip python-yaml
 #RUN pip install --pre --upgrade suricata-update
 
-RUN suricata --build-info 
+# Open up the permissions on /var/log/suricata so linked containers can
+# see it.
+RUN chmod 755 /var/log/suricata
+
+COPY /Dockerfile/docker-entrypoint.sh /
+
+VOLUME /var/log/suricata
+
+RUN /usr/sbin/suricata -V
+
+RUN suricata --build-info
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
 
 #RUN apt install -y cronie
 #COPY suricata-update.sh /etc/suricata/suricata-update.sh
